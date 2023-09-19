@@ -425,6 +425,7 @@ function BaganatorMainViewMixin:RefreshTabs()
     if sameConnected[details.realmNormalized] then
       local tabButton = self.tabsPool:Acquire()
       tabButton:SetText(details.character)
+      tabButton:SetText(Baganator.Constants.KioskCharacters[index])
       tabButton:SetScript("OnClick", function()
         Baganator.CallbackRegistry:TriggerEvent("CharacterSelect", char)
       end)
@@ -503,13 +504,13 @@ function BaganatorMainViewMixin:UpdateForCharacter(character, isLive, updatedBag
   if not characterData then
     self:SetTitle("")
   elseif self.viewBankShown then
-    self:SetTitle(BAGANATOR_L_XS_BANK_AND_BAGS:format(characterData.details.character))
+    self:SetTitle(BAGANATOR_L_XS_BANK_AND_BAGS:format(Baganator.Constants.KioskCharacters[1]))
 
     -- Left aligned
     titleText:SetPoint("LEFT", Baganator.Constants.ButtonFrameOffset + 15 + titleOffset, 0)
     titleText:SetPoint("RIGHT", self.ToggleBankButton, "LEFT", -15, 0)
   else
-    self:SetTitle(BAGANATOR_L_XS_BAGS:format(characterData.details.character))
+    self:SetTitle(BAGANATOR_L_XS_BANK_AND_BAGS:format(Baganator.Constants.KioskCharacters[1]))
 
     -- Centred
     titleText:SetPoint("LEFT", titleOffset, 0)

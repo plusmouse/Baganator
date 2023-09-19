@@ -94,6 +94,7 @@ Baganator.Constants.SortStatus = {
   WaitingItemData = 2,
 }
 
+<<<<<<< HEAD
 Baganator.Constants.SampleSearchTerms = {
   "<400",
   BAGANATOR_L_KEYWORD_BOE,
@@ -136,4 +137,13 @@ end
 -- the wrong bag without this override.
 Baganator.Constants.KeyOverrides = {
   [45798] = true,
+}
+
+Baganator.Constants.KioskCharacters = {
+  "Martin",
+  "Eleanor",
+  "Owen",
+  "Patricia",
+  "Janet",
+  "Ivan",
 }
