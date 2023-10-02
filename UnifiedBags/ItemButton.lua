@@ -1,3 +1,5 @@
+local _, addonTable = ...
+
 Baganator.ItemButtonUtil = {}
 local IsEquipment = Baganator.Utilities.IsEquipment
 
@@ -25,10 +27,6 @@ local function IsBindOnAccount(itemLink)
   return false
 end
 
-local function IsCosmetic(bgr)
-  return bgr.classID == Enum.ItemClass.Armor and bgr.subClassID == Enum.ItemArmorSubclass.Cosmetic
-end
-
 local itemCallbacks = {}
 
 local registered = false
@@ -43,18 +41,7 @@ function Baganator.ItemButtonUtil.UpdateSettings()
 
   local qualityColours = Baganator.Config.Get("icon_text_quality_colors")
   if Baganator.Config.Get("show_item_level") then
-    table.insert(itemCallbacks, function(self, data)
-      if IsEquipment(data.itemLink) and not IsCosmetic(self.BGR) then
-        local itemLevel = GetDetailedItemLevelInfo(data.itemLink)
-        self.ItemLevel:SetText(itemLevel)
-        if qualityColours then
-          local color = qualityColors[data.quality]
-          self.ItemLevel:SetTextColor(color.r, color.g, color.b)
-        else
-          self.ItemLevel:SetTextColor(1,1,1)
-        end
-      end
-    end)
+    table.insert(addonTable.adjustIconCallbacks["item_level"])
   end
   if Baganator.Config.Get("show_boe_status") then
     table.insert(itemCallbacks, function(self, data)
@@ -164,7 +151,7 @@ local function SetStaticInfo(self, details)
   self.BGR.isBound = details.isBound
   self.BGR.quality = details.quality
   self.BindingText:SetText("")
-  self.ItemLevel:SetText("")
+  addonTable.itemDataClearCallbacks["item_level"](self)
 
   if self.ProfessionQualityOverlay then
     local scale = self:GetWidth() / 37
@@ -241,10 +228,7 @@ local function ApplyItemDetailSettings(button, size)
     local cornerType = Baganator.Config.Get(config)
     if cornerType == "item_level" then
       button.ItemLevel:SetParent(button)
-      button.ItemLevel:ClearAllPoints()
-      button.ItemLevel:SetPoint(unpack(anchor))
-      button.ItemLevel:SetFont(font, newSize, fontFlags)
-      button.ItemLevel:SetScale(scale)
+      addon
     elseif cornerType == "binding_type" then
       button.BindingText:SetParent(button)
       button.BindingText:ClearAllPoints()

@@ -30,9 +30,6 @@ Baganator.Config.Options = {
   ICON_BOTTOM_LEFT_CORNER = "icon_bottom_left_corner",
   ICON_BOTTOM_RIGHT_CORNER = "icon_bottom_right_corner",
 
-  SHOW_PAWN_ARROW = "show_pawn_arrow",
-  SHOW_CIMI_ICON = "show_cimi_icon",
-
   MAIN_VIEW_POSITION = "main_view_position",
   BANK_ONLY_VIEW_POSITION = "bank_only_view_position",
 
