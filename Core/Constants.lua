@@ -39,6 +39,8 @@ Baganator.Constants.Events = {
   "SettingChangedEarly",
   "SettingChanged",
 
+  "OnUpdateSettings",
+
   "CharacterDeleted",
 
   "BagCacheUpdate",
@@ -54,4 +56,16 @@ Baganator.Constants.Events = {
 
   "ReagentOnEnter",
   "ReagentOnLeave",
+}
+
+Baganator.Constants.TextQualityColors = {
+  [0] = CreateColor(157/255, 157/255, 157/255), -- Poor
+  [1] = CreateColor(240/255, 240/255, 240/255), -- Common
+  [2] = CreateColor(30/255, 178/255, 0/255), -- Uncommon
+  [3] = CreateColor(0/255, 112/255, 221/255), -- Rare
+  [4] = CreateColor(163/255, 53/255, 238/255), -- Epic
+  [5] = CreateColor(225/255, 96/255, 0/255), -- Legendary
+  [6] = CreateColor(229/255, 204/255, 127/255), -- Artifact
+  [7] = CreateColor(79/255, 196/255, 225/255), -- Heirloom
+  [8] = CreateColor(79/255, 196/255, 225/255), -- Blizzard
 }

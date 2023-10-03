@@ -33,7 +33,7 @@ end
 
 -- Called as valid item data is assigned to the item button and is cached in the
 -- Blizzard item cache. This will not be called if no item data is assigned to
--- the button.
+-- the button or the associated option is disabled.
 -- callback: function(itemButton, itemData)
 function Baganator.API.Bags.RegisterIconItemDataSet(optionKey, callback)
   addonTable.unifiedBags.itemDataSetCallbacks[optionKey] = callback

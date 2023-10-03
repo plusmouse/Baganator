@@ -37,6 +37,7 @@ function Baganator.ItemButtonUtil.UpdateSettings()
       Baganator.ItemButtonUtil.UpdateSettings()
     end)
   end
+  Baganator.CallbackRegistry:TriggerCallback("OnUpdateSettings", function()
   itemCallbacks = {}
 
   local qualityColours = Baganator.Config.Get("icon_text_quality_colors")
@@ -70,11 +71,7 @@ function Baganator.ItemButtonUtil.UpdateSettings()
     end)
   end
   if Baganator.Config.Get("show_pawn_arrow") and PawnShouldItemLinkHaveUpgradeArrowUnbudgeted then
-    table.insert(itemCallbacks, function(self, data)
-      if PawnShouldItemLinkHaveUpgradeArrowUnbudgeted(data.itemLink) then
-        self.UpgradeArrow:Show()
-      end
-    end)
+    table.insert(addonTable.adjustIconCallbacks["pawn_arrow"])
   end
   if Baganator.Config.Get("show_cimi_icon") and CIMI_AddToFrame then
     table.insert(itemCallbacks, function(self, data)
@@ -157,11 +154,6 @@ local function SetStaticInfo(self, details)
     local scale = self:GetWidth() / 37
     self.ProfessionQualityOverlay:SetPoint("TOPLEFT", -3 * scale, 2 * scale);
     self.ProfessionQualityOverlay:SetScale(scale);
-  end
-
-  if PawnShouldItemLinkHaveUpgradeArrowUnbudgeted then
-    self.UpgradeArrow:SetTexture("Interface\\AddOns\\Pawn\\Textures\\UpgradeArrow")
-    self.UpgradeArrow:Hide()
   end
 
   if self.CanIMogItOverlay then
