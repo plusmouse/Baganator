@@ -31,16 +31,18 @@ function CharacterSelectSidebarMixin:OnLoad()
     end
     --fs:SetAllPoints()
     frame:SetScript("OnClick", function()
-      Baganator.CallbackRegistry:TriggerEvent("CharacterSelect", elementData.fullName)
+      Baganator.CallbackRegistry:TriggerEvent("CharacterSelect", self:GetParent().window, elementData.fullName)
     end)
     UpdateForSelection(frame)
   end)
   ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, view)
 
-  Baganator.CallbackRegistry:RegisterCallback("CharacterSelect", function(_, character)
-    self.selectedCharacter = character
-    for _, frame in self.ScrollBox:EnumerateFrames() do
-      UpdateForSelection(frame)
+  Baganator.CallbackRegistry:RegisterCallback("CharacterSelect", function(_, window, character)
+    if self:GetParent().window == window then
+      self.selectedCharacter = character
+      for _, frame in self.ScrollBox:EnumerateFrames() do
+        UpdateForSelection(frame)
+      end
     end
   end)
 

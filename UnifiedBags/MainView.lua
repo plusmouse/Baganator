@@ -1,8 +1,11 @@
 local classicTabObjectCounter = 0
+local windowCounter = 0
 
 BaganatorMainViewMixin = {}
 
 function BaganatorMainViewMixin:OnLoad()
+  windowCounter = windowCounter + 1
+  self.window = windowCounter
   ButtonFrameTemplate_HidePortrait(self)
   ButtonFrameTemplate_HideButtonBar(self)
   self.Inset:Hide()
@@ -91,9 +94,11 @@ function BaganatorMainViewMixin:OnLoad()
     self:ApplySearch(text)
   end)
 
-  Baganator.CallbackRegistry:RegisterCallback("CharacterSelect", function(_, character)
-    self:AddNewRecent(character)
-    self:UpdateForCharacter(character, self.liveCharacter == character)
+  Baganator.CallbackRegistry:RegisterCallback("CharacterSelect", function(_, window, character)
+    if window == self.window then
+      self:AddNewRecent(character)
+      self:UpdateForCharacter(character, self.liveCharacter == character)
+    end
   end)
 
   local frame = CreateFrame("Frame")
@@ -306,7 +311,7 @@ function BaganatorMainViewMixin:RefreshTabs()
     local tabButton = self.tabsPool:Acquire()
     tabButton:SetText(char.nameOnly)
     tabButton:SetScript("OnClick", function()
-      Baganator.CallbackRegistry:TriggerEvent("CharacterSelect", char.character)
+      Baganator.CallbackRegistry:TriggerEvent("CharacterSelect", self.window, char.character)
     end)
     if not lastTab then
       tabButton:SetPoint("BOTTOM", 0, -30)
@@ -362,7 +367,7 @@ function BaganatorMainViewMixin:UpdateForCharacter(character, isLive, updatedBag
   self:UpdateBagSlots()
 
   if oldLast ~= character then
-    Baganator.CallbackRegistry:TriggerEvent("CharacterSelect", character)
+    Baganator.CallbackRegistry:TriggerEvent("CharacterSelect", self.window, character)
   end
 
   local characterData = BAGANATOR_DATA.Characters[character]
@@ -480,9 +485,9 @@ function BaganatorMainViewMixin:UpdateForCharacter(character, isLive, updatedBag
   self.SearchBox:ClearAllPoints()
   self.SearchBox:SetPoint("RIGHT", -13, 0)
   self.SearchBox:SetPoint("BOTTOMLEFT", activeBag, "TOPLEFT", 5, 3)
-  self.ToggleBankButton:ClearAllPoints()
-  self.ToggleBankButton:SetPoint("TOP")
-  self.ToggleBankButton:SetPoint("LEFT", activeBag, -13, 0)
+  self.TopButtons[1]:ClearAllPoints()
+  self.TopButtons[1]:SetPoint("TOP")
+  self.TopButtons[1]:SetPoint("LEFT", activeBag, -13, 0)
   self:SetSize(
     activeBag:GetWidth() + 30 + (activeBank and activeBank:GetWidth() + 30 or 0),
     height + 68
