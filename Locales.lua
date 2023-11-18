@@ -24,6 +24,8 @@ L["XS_BANK"] = "%s's Bank"
 L["ALL_CHARACTERS"] = "All Characters"
 L["BAG_SLOTS"] = "Bag Slots"
 L["GUILD_BANK"] = "Guild Bank"
+L["MORE_VIEWS"] = "More Views"
+L["BAGS"] = "Bags"
 
 L["CUSTOMISE_BAGANATOR"] = "Customise Baganator"
 L["RESET_POSITIONS"] = "Reset Positions"

@@ -3,7 +3,7 @@ local function SetupView()
   mainView:SetClampedToScreen(true)
   mainView:SetUserPlaced(false)
 
-  local bankOnlyView = CreateFrame("Frame", "Baganator_BankOnlyViewFrame", UIParent, "BaganatorBankOnlyViewTemplate")
+  local bankOnlyView = CreateFrame("Frame", "Baganator_BankLiveOnlyViewFrame", UIParent, "BaganatorBankLiveOnlyViewTemplate")
   bankOnlyView:SetClampedToScreen(true)
   bankOnlyView:SetUserPlaced(false)
 

@@ -1,11 +1,12 @@
-local classicTabObjectCounter = 0
-local windowCounter = 0
+local _, addonTable = ...
+addonTable.classicTabObjectCounter = 0
+addonTable.windowCounter = 0
 
 BaganatorMainViewMixin = {}
 
 function BaganatorMainViewMixin:OnLoad()
-  windowCounter = windowCounter + 1
-  self.window = windowCounter
+  addonTable.windowCounter = addonTable.windowCounter + 1
+  self.window = addonTable.windowCounter
   ButtonFrameTemplate_HidePortrait(self)
   ButtonFrameTemplate_HideButtonBar(self)
   self.Inset:Hide()
@@ -34,8 +35,8 @@ function BaganatorMainViewMixin:OnLoad()
     self.tabsPool = CreateFramePool("Button", self, "BaganatorRetailTabButtonTemplate")
   else
     self.tabsPool = CreateObjectPool(function(pool)
-      classicTabObjectCounter = classicTabObjectCounter + 1
-      return CreateFrame("Button", "BGRMainViewTabButton" .. classicTabObjectCounter, self, "BaganatorClassicTabButtonTemplate")
+      addonTable.classicTabObjectCounter = addonTable.classicTabObjectCounter + 1
+      return CreateFrame("Button", "BGRMainViewTabButton" .. addonTable.classicTabObjectCounter, self, "BaganatorClassicTabButtonTemplate")
     end, FramePool_HideAndClearAnchors)
   end
 

@@ -1,18 +1,13 @@
 <Ui>
-  <Frame name="BaganatorMainViewTemplate" virtual="true" hidden="true" topLevel="true" enableMouse="true" inherits="ButtonFrameTemplate" mixin="BaganatorMainViewMixin">
+  <Frame name="BaganatorBankLiveOnlyViewTemplate" virtual="true" hidden="true" topLevel="true" enableMouse="true" inherits="ButtonFrameTemplate" mixin="BaganatorBankLiveOnlyViewMixin">
     <Scripts>
       <OnLoad method="OnLoad"/>
-      <OnHide method="OnHide"/>
       <OnEvent method="OnEvent"/>
+      <OnHide method="OnHide"/>
       <OnDragStart method="OnDragStart"/>
       <OnDragStop method="OnDragStop"/>
     </Scripts>
     <Frames>
-      <Frame parentKey="CharacterSelect" inherits="BaganatorCharacterSelectSidebarTemplate" hidden="true">
-        <Anchors>
-          <Anchor point="RIGHT" relativePoint="LEFT"/>
-        </Anchors>
-      </Frame>
       <Button parentKey="CustomiseButton" inherits="BaganatorCustomiseButtonTemplate" frameLevel="700">
         <Anchors>
           <Anchor point="RIGHT" relativeKey="$parent.CloseButton" relativePoint="LEFT"/>
@@ -29,6 +24,9 @@
         </Scripts>
       </Button>
       <Button parentKey="BagsButton" parentArray="TopButtons" inherits="BaganatorBankButtonTemplate" frameLevel="700">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="5"/>
+        </Anchors>
         <Scripts>
           <OnClick>
             self:GetParent():ToggleBank()
@@ -37,7 +35,7 @@
       </Button>
       <Button parentKey="GuildBankButton" parentArray="TopButtons" inherits="BaganatorGuildBankButtonTemplate" frameLevel="700">
         <Anchors>
-          <Anchor point="TOPLEFT" relativeKey="$parent.BankButton" relativePoint="TOPRIGHT"/>
+          <Anchor point="TOPLEFT" relativeKey="$parent.BagsButton" relativePoint="TOPRIGHT"/>
         </Anchors>
         <Scripts>
           <OnClick>
@@ -54,7 +52,7 @@
           </OnClick>
         </Scripts>
       </Button>
-      <Button parentKey="ToggleBagSlotsButton" parentArray="TopButtons" inherits="BaganatorToggleBagSlotsButtonTemplate" frameLevel="700">
+      <Button parentKey="ToggleBagSlotsButton" inherits="BaganatorToggleBagSlotsButtonTemplate" frameLevel="700">
         <Anchors>
           <Anchor point="TOPLEFT" relativeKey="$parent.ToggleAllCharactersButton" relativePoint="TOPRIGHT"/>
         </Anchors>
@@ -64,20 +62,11 @@
           </OnClick>
         </Scripts>
       </Button>
-      <EditBox parentKey="SearchBox" inherits="SearchBoxTemplate" autoFocus="false" frameLevel="700">
-        <Size x="300" y="22"/>
+      <Frame parentKey="BankLive" inherits="BaganatorLiveBagLayoutTemplate">
         <Anchors>
-          <Anchor point="RIGHT" x="-13" y="0"/>
+          <Anchor point="TOPLEFT" x="13" y="-50"/>
         </Anchors>
-      </EditBox>
-      <Button parentKey="ToggleReagentsButton" inherits="BaganatorToggleReagentsButtonTemplate">
-        <Scripts>
-          <OnClick>
-            self:GetParent():ToggleReagents()
-          </OnClick>
-        </Scripts>
-      </Button>
-      <Frame parentKey="BankLive" inherits="BaganatorLiveBagLayoutTemplate"/>
+      </Frame>
       <Frame parentKey="ReagentBankLive" inherits="BaganatorLiveBagLayoutTemplate">
         <Anchors>
           <Anchor point="TOPLEFT" relativeKey="$parent.BankLive" relativePoint="BOTTOMLEFT" y="-14"/>
@@ -87,15 +76,44 @@
         </Frames>
       </Frame>
 
-      <Frame parentKey="BankCached" inherits="BaganatorCachedBagLayoutTemplate"/>
-      <Frame parentKey="ReagentBankCached" inherits="BaganatorCachedBagLayoutTemplate">
+      <EditBox parentKey="SearchBox" inherits="SearchBoxTemplate" autoFocus="false" frameLevel="700">
+        <Size x="300" y="22"/>
         <Anchors>
-          <Anchor point="TOPLEFT" relativeKey="$parent.BankCached" relativePoint="BOTTOMLEFT" y="-14"/>
+          <Anchor point="BOTTOMLEFT" relativeKey="$parent.BankLive" relativePoint="TOPLEFT" x="5"/>
         </Anchors>
-        <Frames>
-          <Frame inherits="BaganatorBagDividerTemplate"/>
-        </Frames>
-      </Frame>
+      </EditBox>
+      <Button parentKey="ToggleReagentsBankButton" inherits="BaganatorToggleReagentsButtonTemplate">
+        <Scripts>
+          <OnClick>
+            self:GetParent():ToggleReagents()
+          </OnClick>
+        </Scripts>
+        <Anchors>
+          <Anchor point="LEFT" relativeKey="$parent.BankLive" x="-2"/>
+          <Anchor point="BOTTOM" y="4"/>
+        </Anchors>
+      </Button>
+      <Button parentKey="DepositIntoReagentsBankButton" inherits="UIPanelDynamicResizeButtonTemplate" text="BAGANATOR_L_DEPOSIT_REAGENTS">
+        <Scripts>
+          <OnClick>
+            DepositReagentBank()
+          </OnClick>
+        </Scripts>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.ToggleReagentsBankButton" relativePoint="TOPRIGHT" x="5" />
+        </Anchors>
+      </Button>
+      <Button parentKey="BuyReagentBankButton" inherits="UIPanelDynamicResizeButtonTemplate" text="BAGANATOR_L_BUY_REAGENT_BANK">
+        <Scripts>
+          <OnClick>
+            StaticPopup_Show("CONFIRM_BUY_REAGENTBANK_TAB")
+          </OnClick>
+        </Scripts>
+        <Anchors>
+          <Anchor point="LEFT" relativeKey="$parent.BankLive" x="-2"/>
+          <Anchor point="BOTTOM" y="4"/>
+        </Anchors>
+      </Button>
     </Frames>
   </Frame>
 </Ui>

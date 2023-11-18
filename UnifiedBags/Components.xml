@@ -59,7 +59,7 @@
     </KeyValues>
     <Layers>
       <Layer level="ARTWORK">
-        <Texture atlas="Banker">
+        <Texture atlas="QuestObjective">
           <Size x="17" y="17"/>
           <Anchors>
             <Anchor point="CENTER"/>
@@ -99,6 +99,22 @@
     <Layers>
       <Layer level="ARTWORK">
         <Texture atlas="socialqueuing-icon-group">
+          <Size x="17" y="17"/>
+          <Anchors>
+            <Anchor point="CENTER"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+  </Button>
+
+  <Button name="BaganatorBagsButtonTemplate" inherits="BaganatorTooltipIconButtonTemplate" virtual="true">
+    <KeyValues>
+      <KeyValue key="tooltipText" value="BAGANATOR_L_BAGS" type="global"/>
+    </KeyValues>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture atlas="Banker">
           <Size x="17" y="17"/>
           <Anchors>
             <Anchor point="CENTER"/>
