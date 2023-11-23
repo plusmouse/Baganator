@@ -55,7 +55,7 @@ function CharacterSelectSidebarMixin:OnLoad()
   self:SetTitle(BAGANATOR_L_ALL_CHARACTERS)
 
   local function UpdateForSelection(frame)
-    if frame.fullName ~= self.selectedCharacter then
+    if frame.fullName ~= "Martin-MirageRaceway" then
       frame:Enable()
       frame:SetText(frame.fullName)
     else
@@ -69,7 +69,7 @@ function CharacterSelectSidebarMixin:OnLoad()
   view:SetElementInitializer("Button", function(frame, elementData)
     frame:SetNormalFontObject(GameFontHighlight)
     --local fs = frame:CreateFontString(nil, nil, "GameFontHighlight")
-    frame.fullName = elementData.fullName
+    frame.fullName = Baganator.Constants.KioskCharacters[(view:GetDataProvider():FindIndex(elementData))] .. "-MirageRaceway"
     frame:SetText(frame.fullName)
     if elementData.className then
       local classColor = RAID_CLASS_COLORS[elementData.className]

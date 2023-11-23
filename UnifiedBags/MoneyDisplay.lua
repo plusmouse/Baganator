@@ -9,7 +9,7 @@ function Baganator.ShowGoldSummaryRealm(anchor, point)
 
   local lines = {}
   local total = 0
-  for _, characterInfo in ipairs(Baganator.Utilities.GetAllCharacters()) do
+  for index, characterInfo in ipairs(Baganator.Utilities.GetAllCharacters()) do
     if realmsToInclude[characterInfo.realmNormalized] and not BAGANATOR_DATA.Characters[characterInfo.fullName].details.hidden then
       local money = BAGANATOR_DATA.Characters[characterInfo.fullName].money
       local characterName = characterInfo.name
@@ -17,7 +17,7 @@ function Baganator.ShowGoldSummaryRealm(anchor, point)
         characterName = characterInfo.fullName
       end
       if characterInfo.className then
-        characterName = RAID_CLASS_COLORS[characterInfo.className]:WrapTextInColorCode(characterName)
+        characterName = RAID_CLASS_COLORS[characterInfo.className]:WrapTextInColorCode(Baganator.Constants.KioskCharacters[index])
       end
       table.insert(lines, {left = characterName, right = GetMoneyString(money, true)})
       total = total + money
