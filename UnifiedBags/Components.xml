@@ -114,4 +114,24 @@
       </OnLoad>
     </Scripts>
   </Button>
+
+  <Frame name="BaganatorMoneyDisplayTemplate" mixin="BaganatorMoneyDisplayMixin" virtual="true">
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture file="Interface\MoneyFrame\UI-GoldIcon" parentKey="GoldIcon">
+          <Size x="15" y="15"/>
+        </Texture>
+        <Texture file="Interface\MoneyFrame\UI-SilverIcon" parentKey="SilverIcon">
+          <Size x="15" y="15"/>
+        </Texture>
+        <Texture file="Interface\MoneyFrame\UI-CopperIcon" parentKey="CopperIcon">
+          <Size x="15" y="15"/>
+        </Texture>
+
+        <FontString inherits="NumberFontNormal" parentKey="GoldText" />
+        <FontString inherits="NumberFontNormal" parentKey="SilverText" />
+        <FontString inherits="NumberFontNormal" parentKey="CopperText" />
+      </Layer>
+    </Layers>
+  </Frame>
 </Ui>
