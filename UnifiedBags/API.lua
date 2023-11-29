@@ -9,7 +9,7 @@ local onButtonInitialized = {}
 
 Baganator.UnifiedBags.API = {}
 
-function Baganator.UnifiedBags.API:RegisterButtonCorner(cornerValue, localeText, positioningCallback, autoOptions)
+function Baganator.UnifiedBags.API:RegisterButtonCorner(cornerValue, localeText, positioningCallback, parentingCallback, autoOptions)
   autoOptions = autoOptions or {"show_" .. cornerValue}
 end
 
