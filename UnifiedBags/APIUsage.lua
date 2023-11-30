@@ -35,9 +35,6 @@ Baganator.UnifiedBags.API.RegisterButtonDataSet("show_boe_status", function(self
   end
 end)
 
--- Create the visible option in the Customise dialog
-Baganator.UnifiedBags.API.CreateOption("show_boa_status", BAGANATOR_L_SHOW_BOA_STATUS)
-
 -- Add a widget for the corner to the dropdown for the icon corner settings.
 Baganator.UnifiedBags.API.RegisterButtonCorner(
   "binding_type",
@@ -65,6 +62,9 @@ local function IsBindOnAccount(itemLink)
   end
   return false
 end
+
+-- Create a visible option in the Customise dialog
+Baganator.UnifiedBags.API.CreateOption("show_boa_status", BAGANATOR_L_SHOW_BOA_STATUS)
 
 -- Add callback per item button when a specific option is enabled
 Baganator.UnifiedBags.API.RegisterButtonDataSet("show_boa_status", function(self, data)
