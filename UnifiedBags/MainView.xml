@@ -29,48 +29,27 @@
           </OnClick>
         </Scripts>
       </Button>
-      <Button parentKey="ToggleBankButton" inherits="BaganatorTooltipIconButtonTemplate" frameLevel="700">
-        <KeyValues>
-          <KeyValue key="tooltipText" value="BAGANATOR_L_BANK" type="global"/>
-        </KeyValues>
-        <Layers>
-          <Layer level="ARTWORK">
-            <Texture parentKey="icon" atlas="VignetteLoot">
-              <Size x="17" y="17"/>
-              <Anchors>
-                <Anchor point="CENTER"/>
-              </Anchors>
-            </Texture>
-          </Layer>
-        </Layers>
+      <Button parentKey="ToggleBankButton" inherits="BaganatorBankButtonTemplate" frameLevel="700">
         <Scripts>
-          <OnLoad>
-            if Baganator.Constants.IsClassic then
-              self.icon:SetSize(22, 22)
-            end
-          </OnLoad>
           <OnClick>
             self:GetParent():ToggleBank()
           </OnClick>
         </Scripts>
       </Button>
-      <Button parentKey="ToggleAllCharacters" inherits="BaganatorTooltipIconButtonTemplate" frameLevel="700">
-        <KeyValues>
-          <KeyValue key="tooltipText" value="BAGANATOR_L_ALL_CHARACTERS" type="global"/>
-        </KeyValues>
+      <Button parentKey="ToggleGuildBankButton" inherits="BaganatorGuildBankButtonTemplate" frameLevel="700">
         <Anchors>
           <Anchor point="TOPLEFT" relativeKey="$parent.ToggleBankButton" relativePoint="TOPRIGHT"/>
         </Anchors>
-        <Layers>
-          <Layer level="ARTWORK">
-            <Texture atlas="socialqueuing-icon-group">
-              <Size x="17" y="17"/>
-              <Anchors>
-                <Anchor point="CENTER"/>
-              </Anchors>
-            </Texture>
-          </Layer>
-        </Layers>
+        <Scripts>
+          <OnClick>
+            self:GetParent():ToggleGuildBank()
+          </OnClick>
+        </Scripts>
+      </Button>
+      <Button parentKey="ToggleAllCharacters" inherits="BaganatorAllCharactersButtonTemplate" frameLevel="700">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeKey="$parent.ToggleGuildBankButton" relativePoint="TOPRIGHT"/>
+        </Anchors>
         <Scripts>
           <OnClick>
             self:GetParent():ToggleCharacterSidebar()

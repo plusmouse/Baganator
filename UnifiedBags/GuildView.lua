@@ -94,9 +94,17 @@ function BaganatorGuildViewMixin:OnDragStop()
 end
 
 function BaganatorGuildViewMixin:UpdateForGuild(guild, isLive)
+  guild = guild or ""
   local guildWidth = Baganator.Config.Get(Baganator.Config.Options.GUILD_VIEW_WIDTH)
 
   self.GuildCached:ShowGuild(guild, 1, guildWidth)
+
+  local guildData = BAGANATOR_DATA.Guilds[guild]
+  if not guildData then
+    self:SetTitle("")
+  else
+    self:SetTitle(BAGANATOR_L_GUILD_OF_XS_BANK:format(guildData.details.guild))
+  end
 
   local height = self.GuildCached:GetHeight() + 6
   self:SetSize(

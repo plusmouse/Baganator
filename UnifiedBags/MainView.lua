@@ -331,6 +331,11 @@ function BaganatorMainViewMixin:ToggleBank()
   self:UpdateForCharacter(self.lastCharacter, self.isLive)
 end
 
+function BaganatorMainViewMixin:ToggleGuildBank()
+  Baganator_GuildViewFrame:SetShown(not Baganator_GuildViewFrame:IsShown())
+  self:UpdateForCharacter(self.lastCharacter, self.isLive)
+end
+
 function BaganatorMainViewMixin:ToggleReagents()
   Baganator.Config.Set(Baganator.Config.Options.SHOW_REAGENTS, not Baganator.Config.Get(Baganator.Config.Options.SHOW_REAGENTS))
 end

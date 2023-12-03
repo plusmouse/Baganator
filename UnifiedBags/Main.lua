@@ -8,6 +8,8 @@ local function SetupView()
   bankOnlyView:SetUserPlaced(false)
 
   local guildView = CreateFrame("Frame", "Baganator_GuildViewFrame", UIParent, "BaganatorGuildViewTemplate")
+  guildView:SetClampedToScreen(true)
+  guildView:SetUserPlaced(false)
 
   local function SetPositions()
     mainView:ClearAllPoints()
@@ -30,11 +32,8 @@ local function SetupView()
     ResetPositions()
   end
 
-  C_Timer.After(2, function()
-    guildView:Show()
-    local guild = next(BAGANATOR_DATA.Guilds)
-    guildView:UpdateForGuild(guild, false)
-  end)
+  local guild = next(BAGANATOR_DATA.Guilds)
+  guildView:UpdateForGuild(guild, false)
 
   table.insert(UISpecialFrames, mainView:GetName())
   table.insert(UISpecialFrames, bankOnlyView:GetName())

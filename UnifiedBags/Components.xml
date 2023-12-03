@@ -125,4 +125,65 @@
       </OnLoad>
     </Scripts>
   </Button>
+
+  <Button name="BaganatorAllCharactersButtonTemplate" inherits="BaganatorTooltipIconButtonTemplate" virtual="true">
+    <KeyValues>
+      <KeyValue key="tooltipText" value="BAGANATOR_L_ALL_CHARACTERS" type="global"/>
+    </KeyValues>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture atlas="socialqueuing-icon-group">
+          <Size x="17" y="17"/>
+          <Anchors>
+            <Anchor point="CENTER"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+  </Button>
+
+  <Button name="BaganatorBankButtonTemplate" inherits="BaganatorTooltipIconButtonTemplate" virtual="true">
+    <KeyValues>
+      <KeyValue key="tooltipText" value="BAGANATOR_L_BANK" type="global"/>
+    </KeyValues>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture parentKey="icon" atlas="VignetteLoot">
+          <Size x="17" y="17"/>
+          <Anchors>
+            <Anchor point="CENTER"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Scripts>
+      <OnLoad>
+        if Baganator.Constants.IsClassic then
+          self.icon:SetSize(22, 22)
+        end
+      </OnLoad>
+    </Scripts>
+  </Button>
+
+  <Button name="BaganatorGuildBankButtonTemplate" inherits="BaganatorTooltipIconButtonTemplate" virtual="true">
+    <KeyValues>
+      <KeyValue key="tooltipText" value="BAGANATOR_L_GUILD_BANK" type="global"/>
+    </KeyValues>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture atlas="communities-guildbanner-background">
+          <Size x="12" y="12"/>
+          <Anchors>
+            <Anchor point="CENTER"/>
+          </Anchors>
+        </Texture>
+        <Texture atlas="communities-guildbanner-border">
+          <Size x="12" y="12"/>
+          <Anchors>
+            <Anchor point="CENTER"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+  </Button>
 </Ui>
