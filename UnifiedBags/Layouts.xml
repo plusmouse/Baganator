@@ -13,6 +13,14 @@
     </Scripts>
   </Frame>
 
+  <Frame name="BaganatorCachedGuildLayoutTemplate" virtual="true" mixin="BaganatorCachedGuildLayoutMixin" parentArray="Layouts">
+    <Scripts>
+      <OnLoad method="OnLoad"/>
+      <OnShow method="OnShow"/>
+      <OnHide method="OnHide"/>
+    </Scripts>
+  </Frame>
+
   <Frame name="BaganatorLiveBagLayoutTemplate" virtual="true" mixin="BaganatorLiveBagLayoutMixin" parentArray="Layouts">
     <Scripts>
       <OnLoad method="OnLoad"/>

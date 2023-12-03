@@ -7,16 +7,21 @@ local function SetupView()
   bankOnlyView:SetClampedToScreen(true)
   bankOnlyView:SetUserPlaced(false)
 
+  local guildView = CreateFrame("Frame", "Baganator_GuildViewFrame", UIParent, "BaganatorGuildViewTemplate")
+
   local function SetPositions()
     mainView:ClearAllPoints()
     mainView:SetPoint(unpack(Baganator.Config.Get(Baganator.Config.Options.MAIN_VIEW_POSITION)))
     bankOnlyView:ClearAllPoints()
     bankOnlyView:SetPoint(unpack(Baganator.Config.Get(Baganator.Config.Options.BANK_ONLY_VIEW_POSITION)))
+    guildView:ClearAllPoints()
+    guildView:SetPoint(unpack(Baganator.Config.Get(Baganator.Config.Options.GUILD_VIEW_POSITION)))
   end
 
   local function ResetPositions()
     Baganator.Config.ResetOne(Baganator.Config.Options.MAIN_VIEW_POSITION)
     Baganator.Config.ResetOne(Baganator.Config.Options.BANK_ONLY_VIEW_POSITION)
+    Baganator.Config.ResetOne(Baganator.Config.Options.GUILD_VIEW_POSITION)
     SetPositions()
   end
 
@@ -25,8 +30,15 @@ local function SetupView()
     ResetPositions()
   end
 
+  C_Timer.After(2, function()
+    guildView:Show()
+    local guild = next(BAGANATOR_DATA.Guilds)
+    guildView:UpdateForGuild(guild, false)
+  end)
+
   table.insert(UISpecialFrames, mainView:GetName())
   table.insert(UISpecialFrames, bankOnlyView:GetName())
+  table.insert(UISpecialFrames, guildView:GetName())
 
   Baganator.CallbackRegistry:RegisterCallback("ResetFramePositions", function()
     ResetPositions()
