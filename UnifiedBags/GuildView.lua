@@ -103,7 +103,7 @@ function BaganatorGuildViewMixin:UpdateForGuild(guild, isLive)
   if not guildData then
     self:SetTitle("")
   else
-    self:SetTitle(BAGANATOR_L_GUILD_OF_XS_BANK:format(guildData.details.guild))
+    self:SetTitle(BAGANATOR_L_XS_GUILD_BANK:format(guildData.details.guild))
   end
 
   local height = self.GuildCached:GetHeight() + 6
