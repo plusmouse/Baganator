@@ -38,6 +38,7 @@ UnifiedBags\Utilities.lua
 UnifiedBags\ItemButton.lua
 UnifiedBags\ItemButton.xml
 UnifiedBags\ItemButtonDataEvents.lua
+UnifiedBags\Pools.lua
 UnifiedBags\ContainerSlots.lua
 UnifiedBags\ContainerSlots.xml
 UnifiedBags\Components.xml

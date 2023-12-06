@@ -88,14 +88,7 @@ end
 BaganatorCachedBagLayoutMixin = {}
 
 function BaganatorCachedBagLayoutMixin:OnLoad()
-  if Baganator.Constants.IsRetail then
-    self.buttonPool = CreateFramePool("ItemButton", self, "BaganatorRetailCachedItemButtonTemplate")
-  else
-    self.buttonPool = CreateObjectPool(function(pool)
-      classicCachedObjectCounter = classicCachedObjectCounter + 1
-      return CreateFrame("Button", "BGRCachedItemButton" .. classicCachedObjectCounter, self, "BaganatorClassicCachedItemButtonTemplate")
-    end, FramePool_HideAndClearAnchors)
-  end
+  self.buttonPool = Baganator.UnifiedBags.GetCachedItemButtonPool(self)
   self.buttons = {}
   self.prevState = {}
   self.buttonsByBag = {}
@@ -266,15 +259,7 @@ end
 BaganatorLiveBagLayoutMixin = {}
 
 function BaganatorLiveBagLayoutMixin:OnLoad()
-  if Baganator.Constants.IsRetail then
-    self.buttonPool = CreateFramePool("ItemButton", self, "BaganatorRetailLiveItemButtonTemplate")
-  else
-    self.buttonPool = CreateObjectPool(function(pool)
-      classicCachedObjectCounter = classicCachedObjectCounter + 1
-      return CreateFrame("Button", "BGRLiveItemButton" .. classicCachedObjectCounter, self, "BaganatorClassicLiveItemButtonTemplate")
-    end, FramePool_HideAndClearAnchors)
-  end
-
+  self.buttonPool = Baganator.UnifiedBags.GetLiveItemButtonPool(self)
   self.indexFramesPool = CreateFramePool("Frame", self)
   self.buttons = {}
   self.buttonsByBag = {}
@@ -550,14 +535,7 @@ end
 BaganatorCachedGuildLayoutMixin = {}
 
 function BaganatorCachedGuildLayoutMixin:OnLoad()
-  if Baganator.Constants.IsRetail then
-    self.buttonPool = CreateFramePool("ItemButton", self, "BaganatorRetailCachedItemButtonTemplate")
-  else
-    self.buttonPool = CreateObjectPool(function(pool)
-      classicCachedObjectCounter = classicCachedObjectCounter + 1
-      return CreateFrame("Button", "BGRCachedItemButton" .. classicCachedObjectCounter, self, "BaganatorClassicCachedItemButtonTemplate")
-    end, FramePool_HideAndClearAnchors)
-  end
+  self.buttonPool = Baganator.UnifiedBags.GetCachedItemButtonPool(self)
   self.buttons = {}
   self.prevState = {}
   self.SearchMonitor = CreateFrame("Frame", nil, self, "BaganatorSearchLayoutMonitorTemplate")
