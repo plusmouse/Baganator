@@ -145,9 +145,17 @@ function BaganatorGuildViewMixin:UpdateForGuild(guild, isLive)
 
   self.Tabs[1]:SetPoint("LEFT", self.GuildCached, "LEFT")
 
+  local sideSpacing = 13
+  if Baganator.Config.Get(Baganator.Config.Options.REDUCE_SPACING) then
+    sideSpacing = 8
+  end
+
+  self.GuildCached:ClearAllPoints()
+  self.GuildCached:SetPoint("TOPLEFT", sideSpacing + Baganator.Constants.ButtonFrameOffset, -50)
+
   local height = self.GuildCached:GetHeight() + 6
   self:SetSize(
-    self.GuildCached:GetWidth() + 30,
-    height + 68
+    self.GuildCached:GetWidth() + sideSpacing * 2 + Baganator.Constants.ButtonFrameOffset,
+    height + 60
   )
 end
