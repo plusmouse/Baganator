@@ -31,14 +31,7 @@ function BaganatorMainViewMixin:OnLoad()
   self.blizzardBankOpen = false
   self.viewBankShown = false
 
-  if Baganator.Constants.IsRetail then
-    self.tabsPool = CreateFramePool("Button", self, "BaganatorRetailTabButtonTemplate")
-  else
-    self.tabsPool = CreateObjectPool(function(pool)
-      classicTabObjectCounter = classicTabObjectCounter + 1
-      return CreateFrame("Button", "BGRMainViewTabButton" .. classicTabObjectCounter, self, "BaganatorClassicTabButtonTemplate")
-    end, FramePool_HideAndClearAnchors)
-  end
+  self.tabsPool = Baganator.UnifiedBags.GetTabButtonPool(self)
 
   self.SearchBox:HookScript("OnTextChanged", function(_, isUserInput)
     if isUserInput and not self.SearchBox:IsInIMECompositionMode() then

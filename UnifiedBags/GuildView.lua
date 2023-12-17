@@ -7,14 +7,7 @@ function BaganatorGuildViewMixin:OnLoad()
   self:RegisterForDrag("LeftButton")
   self:SetMovable(true)
 
-  if Baganator.Constants.IsRetail then
-    self.tabsPool = CreateFramePool("Button", self, "BaganatorRetailTabButtonTemplate")
-  else
-    self.tabsPool = CreateObjectPool(function(pool)
-      classicTabObjectCounter = classicTabObjectCounter + 1
-      return CreateFrame("Button", "BGRGuildViewTabButton" .. classicTabObjectCounter, self, "BaganatorClassicTabButtonTemplate")
-    end, FramePool_HideAndClearAnchors)
-  end
+  self.tabsPool = Baganator.UnifiedBags.GetTabButtonPool(self)
 
   self.SearchBox:HookScript("OnTextChanged", function(_, isUserInput)
     if isUserInput and not self.SearchBox:IsInIMECompositionMode() then
@@ -93,18 +86,30 @@ function BaganatorGuildViewMixin:OnDragStop()
   Baganator.Config.Set(Baganator.Config.Options.GUILD_VIEW_POSITION, {point, x, y})
 end
 
+function BaganatorGuildViewMixin:UpdateTabs()
+  self.tabsPool:ReleaseAll()
+
+  local tabs = {}
+  for _, tabInfo in BAGANATOR_DATA.Guilds[guild].bank do
+    local bankTab = self.tabsPool:Acquire()
+  end
+end
+
 function BaganatorGuildViewMixin:UpdateForGuild(guild, isLive)
   guild = guild or ""
   local guildWidth = Baganator.Config.Get(Baganator.Config.Options.GUILD_VIEW_WIDTH)
-
-  self.GuildCached:ShowGuild(guild, 1, guildWidth)
 
   local guildData = BAGANATOR_DATA.Guilds[guild]
   if not guildData then
     self:SetTitle("")
   else
+    self.lastGuild = guild
     self:SetTitle(BAGANATOR_L_XS_GUILD_BANK:format(guildData.details.guild))
   end
+
+  self:UpdateTabs()
+
+  self.GuildCached:ShowGuild(guild, 1, guildWidth)
 
   local height = self.GuildCached:GetHeight() + 6
   self:SetSize(
