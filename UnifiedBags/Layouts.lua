@@ -591,11 +591,21 @@ function BaganatorCachedGuildLayoutMixin:ShowGuild(guild, tabIndex, rowWidth)
     return
   end
 
+  if self.prevState.guild ~= guild or self.prevState.tabIndex ~= tabIndex then
+    self.refreshContent = true
+  end
+
   if self.refreshContent then
     self.refreshContent = false
 
-    for index, slotInfo in ipairs(tabData.slots) do
-      self.buttons[index]:SetItemDetails(slotInfo)
+    if #tabData.slots > 0 then
+      for index, slotInfo in ipairs(tabData.slots) do
+        self.buttons[index]:SetItemDetails(slotInfo)
+      end
+    else
+      for _, button in ipairs(self.buttons) do
+        button:SetItemDetails({})
+      end
     end
   end
 

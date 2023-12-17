@@ -32,9 +32,6 @@ local function SetupView()
     ResetPositions()
   end
 
-  local guild = next(BAGANATOR_DATA.Guilds)
-  guildView:UpdateForGuild(guild, false)
-
   table.insert(UISpecialFrames, mainView:GetName())
   table.insert(UISpecialFrames, bankOnlyView:GetName())
   table.insert(UISpecialFrames, guildView:GetName())
@@ -101,6 +98,12 @@ local function SetupView()
       return
     end
     ToggleMainView()
+  end)
+
+  Baganator.CallbackRegistry:RegisterCallback("GuildToggle", function()
+    guildView:SetShown(not guildView:IsShown())
+    local guild = next(BAGANATOR_DATA.Guilds)
+    guildView:UpdateForGuild(guild, false)
   end)
 end
 

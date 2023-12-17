@@ -8,6 +8,7 @@ function BaganatorGuildViewMixin:OnLoad()
   self:SetMovable(true)
 
   self.tabsPool = Baganator.UnifiedBags.GetTabButtonPool(self)
+  self.currentTab = 1
 
   self.SearchBox:HookScript("OnTextChanged", function(_, isUserInput)
     if isUserInput and not self.SearchBox:IsInIMECompositionMode() then
@@ -89,15 +90,43 @@ end
 function BaganatorGuildViewMixin:UpdateTabs()
   self.tabsPool:ReleaseAll()
 
+  local lastTab
   local tabs = {}
-  for _, tabInfo in BAGANATOR_DATA.Guilds[guild].bank do
-    local bankTab = self.tabsPool:Acquire()
+  for index, tabInfo in ipairs(BAGANATOR_DATA.Guilds[self.lastGuild].bank) do
+    local tabButton = self.tabsPool:Acquire()
+    tabButton:SetText(CreateTextureMarkup(tabInfo.iconTexture, 22, 22, 18, 18, 0, 1, 0, 1) .. " " .. tabInfo.name)
+    tabButton:SetScript("OnClick", function()
+      self:SetCurrentTab(index)
+    end)
+    if not lastTab then
+      tabButton:SetPoint("BOTTOM", 0, -30)
+    else
+      tabButton:SetPoint("TOPLEFT", lastTab, "TOPRIGHT")
+    end
+    tabButton:SetID(index)
+    tabButton:Show()
+    lastTab = tabButton
+    table.insert(tabs, tabButton)
   end
+
+  self.Tabs = tabs
+
+  PanelTemplates_SetNumTabs(self, #tabs)
+
+  PanelTemplates_SetTab(self, self.currentTab)
+end
+
+function BaganatorGuildViewMixin:SetCurrentTab(index)
+  self.currentTab = index
+  self:UpdateForGuild(self.lastGuild, self.isLive)
 end
 
 function BaganatorGuildViewMixin:UpdateForGuild(guild, isLive)
   guild = guild or ""
+
   local guildWidth = Baganator.Config.Get(Baganator.Config.Options.GUILD_VIEW_WIDTH)
+
+  self.isLive = isLive
 
   local guildData = BAGANATOR_DATA.Guilds[guild]
   if not guildData then
@@ -109,7 +138,12 @@ function BaganatorGuildViewMixin:UpdateForGuild(guild, isLive)
 
   self:UpdateTabs()
 
-  self.GuildCached:ShowGuild(guild, 1, guildWidth)
+  self.GuildCached:ShowGuild(guild, self.currentTab, guildWidth)
+
+  -- 300 is the default searchbox width
+  self.SearchBox:SetWidth(math.min(300, self.GuildCached:GetWidth() - 5))
+
+  self.Tabs[1]:SetPoint("LEFT", self.GuildCached, "LEFT")
 
   local height = self.GuildCached:GetHeight() + 6
   self:SetSize(

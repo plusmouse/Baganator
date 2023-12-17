@@ -325,8 +325,7 @@ function BaganatorMainViewMixin:ToggleBank()
 end
 
 function BaganatorMainViewMixin:ToggleGuildBank()
-  Baganator_GuildViewFrame:SetShown(not Baganator_GuildViewFrame:IsShown())
-  self:UpdateForCharacter(self.lastCharacter, self.isLive)
+  Baganator.CallbackRegistry:TriggerEvent("GuildToggle")
 end
 
 function BaganatorMainViewMixin:ToggleReagents()
