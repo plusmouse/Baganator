@@ -66,6 +66,7 @@ L["POOR_QUALITY"] = "Poor quality"
 L["EQUIPMENT_SET"] = "Equipment Set"
 L["PLACE_SPACE_EMPTY_OF_SLOTS_AT_TOP"] = "Place bag space empty of slots at the top"
 L["ITEMS_FLASH_ON_ALT_CLICK"] = "Flash all the same items on [Alt]+Click"
+L["DESTROY_ITEM_ON_SHIFT_RIGHT_CLICK"] = "Destroy item on [Shift]+Right Click (no confirmation)"
 L["REDUCE_SPACING_BETWEEN_UI_COMPONENTS"] = "Reduce spacing between UI components"
 
 L["INVENTORY_TOTALS_COLON"] = "Inventory Totals:"

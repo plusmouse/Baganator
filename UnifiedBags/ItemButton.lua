@@ -585,9 +585,12 @@ end
 BaganatorRetailLiveItemButtonMixin = {}
 
 function BaganatorRetailLiveItemButtonMixin:MyOnLoad()
-  self:HookScript("OnClick", function()
+  self:HookScript("OnClick", function(self, button)
     if IsAltKeyDown() then
       Baganator.CallbackRegistry:TriggerEvent("HighlightSimilarItems", self.BGR.itemName)
+    elseif IsShiftKeyDown() and button == "RightButton" and Baganator.Config.Get(Baganator.Config.Options.ITEM_DESTROY_SHORTCUT) and self.BGR.itemName then
+      C_Container.PickupContainerItem(self:GetParent():GetID(), self:GetID())
+      DeleteCursorItem()
     end
   end)
   -- Automatically use the reagent bank when at the bank transferring crafting
@@ -834,9 +837,12 @@ BaganatorClassicLiveItemButtonMixin = {}
 -- Alter the item button so that the tooltip works both on bag items and bank
 -- items
 function BaganatorClassicLiveItemButtonMixin:MyOnLoad()
-  self:HookScript("OnClick", function()
+  self:HookScript("OnClick", function(self, button)
     if IsAltKeyDown() then
       Baganator.CallbackRegistry:TriggerEvent("HighlightSimilarItems", self.BGR.itemName)
+    elseif IsShiftKeyDown() and button == "RightButton" and Baganator.Config.Get(Baganator.Config.Options.ITEM_DESTROY_SHORTCUT) and self.BGR.itemName then
+      C_Container.PickupContainerItem(self:GetParent():GetID(), self:GetID())
+      DeleteCursorItem()
     end
   end)
 

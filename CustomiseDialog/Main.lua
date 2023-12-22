@@ -103,6 +103,11 @@ local ICON_OPTIONS = {
     option = "icon_flash_similar_alt",
   },
   {
+    type = "checkbox",
+    text = BAGANATOR_L_DESTROY_ITEM_ON_SHIFT_RIGHT_CLICK,
+    option = "item_destroy_shortcut",
+  },
+  {
     type = "slider",
     min = 10,
     max = 70,

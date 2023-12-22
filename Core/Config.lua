@@ -58,6 +58,8 @@ Baganator.Config.Options = {
   BANK_ONLY_VIEW_POSITION = "bank_only_view_position",
   BANK_ONLY_VIEW_SHOW_BAG_SLOTS = "bank_only_view_show_bag_slots",
 
+  ITEM_DESTROY_SHORTCUT = "item_destroy_shortcut",
+
   DEBUG = "debug",
   DEBUG_TIMERS = "debug_timers",
 
@@ -120,6 +122,7 @@ Baganator.Config.Defaults = {
   [Baganator.Config.Options.SORT_IGNORE_SLOTS_COUNT] = 0,
   [Baganator.Config.Options.AUTO_SORT_ON_OPEN] = false,
   [Baganator.Config.Options.JUNK_PLUGIN] = "poor_quality",
+  [Baganator.Config.Options.ITEM_DESTROY_SHORTCUT] = false,
 
   [Baganator.Config.Options.DEBUG] = false,
   [Baganator.Config.Options.DEBUG_TIMERS] = false,
