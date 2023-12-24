@@ -101,6 +101,9 @@ local function SetupView()
   end)
 
   Baganator.CallbackRegistry:RegisterCallback("GuildToggle", function()
+    if not next(BAGANATOR_DATA.Guilds) then
+      return
+    end
     guildView:SetShown(not guildView:IsShown())
     local guild = next(BAGANATOR_DATA.Guilds)
     guildView:UpdateForGuild(guild, false)

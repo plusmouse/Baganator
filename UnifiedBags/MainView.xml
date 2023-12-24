@@ -29,37 +29,28 @@
           </OnClick>
         </Scripts>
       </Button>
-      <Button parentKey="ToggleBankButton" inherits="BaganatorBankButtonTemplate" frameLevel="700">
+      <Button parentKey="ToggleBankButton" inherits="BaganatorBankButtonTemplate" frameLevel="700" parentArray="TopButtons">
         <Scripts>
           <OnClick>
             self:GetParent():ToggleBank()
           </OnClick>
         </Scripts>
       </Button>
-      <Button parentKey="ToggleGuildBankButton" inherits="BaganatorGuildBankButtonTemplate" frameLevel="700">
-        <Anchors>
-          <Anchor point="TOPLEFT" relativeKey="$parent.ToggleBankButton" relativePoint="TOPRIGHT"/>
-        </Anchors>
+      <Button parentKey="ToggleGuildBankButton" inherits="BaganatorGuildBankButtonTemplate" frameLevel="700" parentArray="TopButtons">
         <Scripts>
           <OnClick>
             self:GetParent():ToggleGuildBank()
           </OnClick>
         </Scripts>
       </Button>
-      <Button parentKey="ToggleAllCharacters" inherits="BaganatorAllCharactersButtonTemplate" frameLevel="700">
-        <Anchors>
-          <Anchor point="TOPLEFT" relativeKey="$parent.ToggleGuildBankButton" relativePoint="TOPRIGHT"/>
-        </Anchors>
+      <Button parentKey="ToggleAllCharacters" inherits="BaganatorAllCharactersButtonTemplate" frameLevel="700" parentArray="TopButtons">
         <Scripts>
           <OnClick>
             self:GetParent():ToggleCharacterSidebar()
           </OnClick>
         </Scripts>
       </Button>
-      <Button parentKey="ToggleBagSlotsButton" inherits="BaganatorToggleBagSlotsButtonTemplate" frameLevel="700">
-        <Anchors>
-          <Anchor point="TOPLEFT" relativeKey="$parent.ToggleAllCharacters" relativePoint="TOPRIGHT"/>
-        </Anchors>
+      <Button parentKey="ToggleBagSlotsButton" inherits="BaganatorToggleBagSlotsButtonTemplate" frameLevel="700" parentArray="TopButtons">
         <Scripts>
           <OnClick>
             self:GetParent():ToggleBagSlots()

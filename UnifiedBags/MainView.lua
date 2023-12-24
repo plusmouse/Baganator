@@ -138,6 +138,11 @@ function BaganatorMainViewMixin:OnLoad()
       self:UpdateCurrencies(self.lastCharacter)
     end
   end)
+
+  for index = 2, #self.TopButtons do
+    local button = self.TopButtons[index]
+    button:SetPoint("TOPLEFT", self.TopButtons[index-1], "TOPRIGHT")
+  end
 end
 
 function BaganatorMainViewMixin:OnShow()
@@ -236,7 +241,7 @@ function BaganatorMainViewMixin:CreateBagSlots()
     bb:SetID(index)
     if #self.liveBagSlots == 1 then
       bb:SetPoint("BOTTOM", self, "TOP")
-      bb:SetPoint("LEFT", self.ToggleBankButton, "LEFT", 2, 0)
+      bb:SetPoint("LEFT", self.TopButtons[1], "LEFT", 2, 0)
     else
       bb:SetPoint("TOPLEFT", self.liveBagSlots[#self.liveBagSlots - 1], "TOPRIGHT")
     end
@@ -624,9 +629,9 @@ function BaganatorMainViewMixin:UpdateForCharacter(character, isLive, updatedBag
   self.SearchBox:ClearAllPoints()
   self.SearchBox:SetPoint("RIGHT", -sideSpacing, 0)
   self.SearchBox:SetPoint("BOTTOMLEFT", activeBag, "TOPLEFT", 5, 3)
-  self.ToggleBankButton:ClearAllPoints()
-  self.ToggleBankButton:SetPoint("TOP")
-  self.ToggleBankButton:SetPoint("LEFT", activeBag, -sideSpacing + 2, 0)
+  self.TopButtons[1]:ClearAllPoints()
+  self.TopButtons[1]:SetPoint("TOP")
+  self.TopButtons[1]:SetPoint("LEFT", activeBag, -sideSpacing + 2, 0)
   self:SetSize(
     activeBag:GetWidth() + sideSpacing * 2 + Baganator.Constants.ButtonFrameOffset - 2 + (activeBank and (activeBank:GetWidth() + sideSpacing * 1 + Baganator.Constants.ButtonFrameOffset - 2) or 0),
     height + 74
