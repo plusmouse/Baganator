@@ -30,3 +30,21 @@ Baganator.Utilities.OnAddonLoaded("Scrap", function()
     Baganator.API.RequestItemButtonsRefresh()
   end)
 end)
+
+Baganator.Utilities.OnAddonLoaded("Dejunk", function()
+  if not Dejunk_IsJunk then
+    return
+  end
+
+  Baganator.API.RegisterJunkPlugin(BAGANATOR_L_DEJUNK, "dejunk", function(bagID, slotID, itemID, itemLink)
+    return Dejunk_IsJunk(bagID, slotID)
+  end)
+
+  if not Dejunk_AddJunkUpdatedCallback then
+    return
+  end
+
+  Dejunk_AddJunkUpdatedCallback(function()
+    Baganator.API.RequestItemButtonsRefresh()
+  end)
+end)
