@@ -1,5 +1,5 @@
 <Ui>
-  <ItemButton name="BaganatorRetailCachedItemButtonTemplate" virtual="true" mixin="BaganatorRetailCachedItemButtonMixin">
+  <ItemButton name="BaganatorRetailCachedBagItemButtonTemplate" virtual="true" mixin="BaganatorRetailCachedBagItemButtonMixin">
     <Scripts>
       <OnClick method="OnClick"/>
       <OnEnter method="OnEnter"/>
@@ -16,10 +16,10 @@
     </Layers>
   </ItemButton>
 
-  <ItemButton name="BaganatorRetailLiveItemButtonTemplate" virtual="true" inherits="ContainerFrameItemButtonTemplate">
+  <ItemButton name="BaganatorRetailLiveBagItemButtonTemplate" virtual="true" inherits="ContainerFrameItemButtonTemplate">
     <Scripts>
       <OnLoad inherit="prepend">
-        Mixin(self, BaganatorRetailLiveItemButtonMixin)
+        Mixin(self, BaganatorRetailLiveBagItemButtonMixin)
         self:MyOnLoad()
       </OnLoad>
     </Scripts>
@@ -34,7 +34,7 @@
     </Layers>
   </ItemButton>
 
-  <Button name="BaganatorClassicCachedItemButtonTemplate" virtual="true" inherits="ItemButtonTemplate" mixin="BaganatorClassicCachedItemButtonMixin">
+  <Button name="BaganatorClassicCachedBagItemButtonTemplate" virtual="true" inherits="ItemButtonTemplate" mixin="BaganatorClassicCachedBagItemButtonMixin">
     <Scripts>
       <OnClick method="OnClick"/>
       <OnEnter method="OnEnter"/>
@@ -51,10 +51,10 @@
     </Layers>
   </Button>
 
-  <Button name="BaganatorClassicLiveItemButtonTemplate" virtual="true" inherits="ContainerFrameItemButtonTemplate">
+  <Button name="BaganatorClassicLiveBagItemButtonTemplate" virtual="true" inherits="ContainerFrameItemButtonTemplate">
     <Scripts>
       <OnLoad inherit="prepend">
-        Mixin(self, BaganatorClassicLiveItemButtonMixin)
+        Mixin(self, BaganatorClassicLiveBagItemButtonMixin)
         self:MyOnLoad()
       </OnLoad>
     </Scripts>

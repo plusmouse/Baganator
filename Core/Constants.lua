@@ -54,6 +54,8 @@ if Baganator.Constants.IsClassic then
   Baganator.Constants.ButtonFrameOffset = 0
 end
 
+Baganator.Constants.BagViewAllocation = 6 * Baganator.Constants.MaxBagSize
+
 Baganator.Constants.Events = {
   "SettingChangedEarly",
   "SettingChanged",

@@ -79,7 +79,7 @@ function Baganator.BagLayouts.GetPools(parent)
   end
 end
 
-function Baganator.BagLayouts.CreateBlizzStyleContainer(name)
+function Baganator.BagLayouts.CreateBlizzStyleContainer(name, pools)
   local container = CreateFrame("Frame", name, UIParent, "ButtonFrameTemplate")
   ButtonFrameTemplate_HidePortrait(container)
   ButtonFrameTemplate_HideButtonBar(container)

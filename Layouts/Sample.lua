@@ -52,5 +52,4 @@ Baganator.BagLayouts.ViewDescriptor = {
       allocated = true,
     },
   },
-  bagSlotsPreallocated = 6 * Baganator.Constants.MaxBagSize,
 }
