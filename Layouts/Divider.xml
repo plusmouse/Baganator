@@ -1,0 +1,31 @@
+<Ui>
+  <Frame name="BaganatorLayoutDividerTemplate" virtual="true">
+    <Anchors>
+      <Anchor point="TOPLEFT"/>
+      <Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT"/>
+    </Anchors>
+    <Scripts>
+      <OnLoad>
+        if Baganator.Constants.IsRetail then
+          self.Divider:SetAtlas("activities-divider", true)
+        else
+          self.Divider:SetTexture("Interface\\Common\\UI-TooltipDivider")
+          self.Divider:ClearAllPoints()
+          self.Divider:SetHeight(15)
+          self.Divider:SetPoint("LEFT", 0, 8)
+          self.Divider:SetPoint("RIGHT")
+        end
+      </OnLoad>
+    </Scripts>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture parentKey="Divider">
+          <Anchors>
+            <Anchor point="TOPLEFT" y="10"/>
+            <Anchor point="TOPRIGHT" y="10"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+  </Frame>
+</Ui>

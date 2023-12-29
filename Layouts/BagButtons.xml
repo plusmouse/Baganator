@@ -1,0 +1,25 @@
+<Ui>
+  <Frame name="BaganatorSearchLayoutMonitorTemplate" virtual="true" mixin="BaganatorSearchLayoutMonitorMixin" parentArray="Layouts">
+    <Scripts>
+      <OnLoad method="OnLoad"/>
+:   </Scripts>
+  </Frame>
+
+  <Frame name="BaganatorCachedBagButtonGridTemplate" virtual="true" mixin="BaganatorCachedBagButtonGridMixin" parentArray="Layouts">
+    <Scripts>
+      <OnLoad method="OnLoad"/>
+      <OnShow method="OnShow"/>
+      <OnHide method="OnHide"/>
+    </Scripts>
+  </Frame>
+
+  <Frame name="BaganatorLiveBagButtonGridTemplate" virtual="true" mixin="BaganatorLiveBagButtonGridMixin" parentArray="Layouts">
+    <Scripts>
+      <OnLoad method="OnLoad"/>
+      <OnShow method="OnShow"/>
+      <OnHide method="OnHide"/>
+      <OnEvent method="OnEvent"/>
+    </Scripts>
+  </Frame>
+
+</Ui>

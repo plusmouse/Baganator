@@ -125,4 +125,29 @@
       </OnLoad>
     </Scripts>
   </Button>
+  <Button name="BaganatorToggleBankButtonTemplate" virtual="true" inherits="BaganatorTooltipIconButtonTemplate">
+    <KeyValues>
+      <KeyValue key="tooltipText" value="BAGANATOR_L_BANK" type="global"/>
+    </KeyValues>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture parentKey="icon" atlas="VignetteLoot">
+          <Size x="17" y="17"/>
+          <Anchors>
+            <Anchor point="CENTER"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+    <Scripts>
+      <OnLoad>
+        if Baganator.Constants.IsClassic then
+          self.icon:SetSize(22, 22)
+        end
+      </OnLoad>
+      <OnClick>
+        self:GetParent():ToggleBank()
+      </OnClick>
+    </Scripts>
+  </Button>
 </Ui>
