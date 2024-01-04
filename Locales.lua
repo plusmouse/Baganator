@@ -53,6 +53,7 @@ L["SHOW_ITEM_LEVEL"] = "Show equipment item levels"
 L["SHOW_BOE_STATUS"] = "Show equipment BoE status"
 L["HIDE_BOE_STATUS_ON_COMMON"] = "Hide any BoE status on junk/common items"
 L["SHOW_BOA_STATUS"] = "Show equipment BoA status (slow)"
+L["SHOW_TRADEABLE_LOOT_STATUS"] = "Show equipment tradeable loot (TL) status (slow)"
 L["CUSTOMISE_SHOW_TABS"] = "Show tabs of recent characters"
 L["SHOW_INVENTORY_IN_TOOLTIPS"] = "Show inventory in item tooltips"
 L["SHOW_CURRENCY_TOOLTIPS"] = "Show other characters currency in tooltips"
@@ -92,6 +93,7 @@ L["SHOW_IN_TOOLTIPS"] = "Show in tooltips"
 
 L["BOE"] = "BoE"
 L["BOA"] = "BoA"
+L["TL"] = "TL"
 
 L["SORT"] = "Sort"
 L["SORTING"] = "Sorting"
@@ -118,6 +120,7 @@ L["KEYWORD_SOCKET"] = "socket"
 L["KEYWORD_JUNK"] = "junk"
 L["KEYWORD_TRASH"] = "trash"
 L["KEYWORD_COSMETIC"] = "cosmetic"
+L["KEYWORD_TRADEABLE_LOOT"] = "tradeable loot"
 
 L["SEARCH_TRY_X"] = "Search, try %s"
 

@@ -64,6 +64,8 @@ local expansionIDToText = {
   [9] = "DF",
 }
 
+local TRADEABLE_LOOT_PATTERN = BIND_TRADE_TIME_REMAINING:gsub("([^%w])", "%%%1"):gsub("%%%%s", ".*")
+
 local function IsBindOnAccount(details)
   if not details.isBound then
     return false
@@ -74,6 +76,22 @@ local function IsBindOnAccount(details)
   if details.tooltipInfo then
     for _, row in ipairs(details.tooltipInfo.lines) do
       if row.leftText == ITEM_BIND_TO_BNETACCOUNT or row.leftText == ITEM_BNETACCOUNTBOUND then
+        return true
+      end
+    end
+  end
+  return false
+end
+local function IsTradeableLoot(details)
+  if not details.isBound then
+    return false
+  end
+  if not details.tooltipInfo then
+    details.tooltipInfo = details.tooltipGetter()
+  end
+  if details.tooltipInfo then
+    for _, row in ipairs(details.tooltipInfo.lines) do
+      if row.leftText:match(TRADEABLE_LOOT_PATTERN) then
         return true
       end
     end
@@ -133,6 +151,19 @@ function Baganator.ItemButtonUtil.UpdateSettings()
     table.insert(itemCallbacks, function(self, data)
       if IsBindOnAccount(self.BGR) then
         self.BindingText:SetText(BAGANATOR_L_BOA)
+        if useQualityColors then
+          local color = qualityColors[data.quality]
+          self.BindingText:SetTextColor(color.r, color.g, color.b)
+        else
+          self.BindingText:SetTextColor(1,1,1)
+        end
+      end
+    end)
+  end
+  if Baganator.Config.Get("show_tl_status") then
+    table.insert(itemCallbacks, function(self, data)
+      if IsTradeableLoot(self.BGR) then
+        self.BindingText:SetText(BAGANATOR_L_TL)
         if useQualityColors then
           local color = qualityColors[data.quality]
           self.BindingText:SetTextColor(color.r, color.g, color.b)

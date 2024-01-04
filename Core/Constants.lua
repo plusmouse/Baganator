@@ -112,6 +112,7 @@ Baganator.Constants.SampleSearchTerms = {
   ITEM_QUALITY2_DESC:lower(),
   BAGANATOR_L_KEYWORD_BOA,
   BAGANATOR_L_KEYWORD_REPUTATION,
+  BAGANATOR_L_KEYWORD_TRADEABLE_LOOT,
 }
 if Baganator.Constants.IsRetail then
   local retailSearchTerms = {

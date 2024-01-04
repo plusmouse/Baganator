@@ -48,6 +48,8 @@ end
 
 local ReputationCheck, BindOnAccountCheck
 
+local TRADEABLE_LOOT_PATTERN = BIND_TRADE_TIME_REMAINING:gsub("([^%w])", "%%%1"):gsub("%%%%s", ".*")
+
 local function GetTooltipInfoSpell(details)
   if details.tooltipInfoSpell then
     return
@@ -97,6 +99,23 @@ local function BindOnAccountCheck(details)
   end
 end
 
+local function TradeableLootCheck(details)
+  if not details.isBound or not details.itemLink:find("item:", nil, true) then
+    return false
+  end
+
+  GetTooltipInfoSpell(details)
+
+  if details.tooltipInfoSpell then
+    for _, row in ipairs(details.tooltipInfoSpell.lines) do
+      if row.leftText:match(TRADEABLE_LOOT_PATTERN) then
+        return true
+      end
+    end
+    return false
+  end
+end
+
 local function SaveBaseStats(details)
   if not Baganator.Utilities.IsEquipment(details.itemLink) then
     details.baseItemStats = {}
@@ -137,6 +156,7 @@ local KEYWORDS_TO_CHECK = {
   [BAGANATOR_L_KEYWORD_TRASH] = JunkCheck,
   [BAGANATOR_L_KEYWORD_REPUTATION] = ReputationCheck,
   [BAGANATOR_L_KEYWORD_BOA] = BindOnAccountCheck,
+  [BAGANATOR_L_KEYWORD_TRADEABLE_LOOT] = TradeableLootCheck,
 }
 
 if Baganator.Constants.IsRetail then
