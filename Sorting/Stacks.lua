@@ -45,7 +45,7 @@ local function DoMovement(stacks)
   return anySwaps
 end
 
-local function GetBagStacks(bags, bagIDs, indexesToUse, callback)
+local function GetBagStacks(bags, bagIDs, callback)
   local waiting = 0
   local loopComplete = false
   local stacks = {}
@@ -79,13 +79,33 @@ local function GetBagStacks(bags, bagIDs, indexesToUse, callback)
   end
 end
 
-function Baganator.Sorting.CombineStacks(bags, bagIDs, indexesToUse, callback)
+function Baganator.Sorting.CombineStacks(bags, bagIDs, callback)
   if InCombatLockdown() then -- Sorting breaks during combat due to Blizzard restrictions
     return
   end
 
-  GetBagStacks(bags, bagIDs, indexesToUse, function(stacks)
+  GetBagStacks(bags, bagIDs, function(stacks)
     local anySwaps = DoMovement(stacks)
     callback(anySwaps)
+  end)
+end
+
+function Baganator.Sorting.CombineBagAndBankStacks(bags, bagIDs, bank, bankIDs, callback)
+  if InCombatLockdown() then -- Sorting breaks during combat due to Blizzard restrictions
+    return
+  end
+
+  GetBagStacks(bags, bagIDs, function(stacks)
+    GetBagStacks(bank, bankIDs, function(s2)
+      for itemID, all in pairs(s2) do
+        if stacks[itemID] == nil then
+          stacks[itemID] = all
+        else
+          tAppendAll(stacks[itemID], all)
+        end
+      end
+      local anySwaps = DoMovement(stacks)
+      callback(anySwaps)
+    end)
   end)
 end

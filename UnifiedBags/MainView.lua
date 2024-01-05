@@ -723,22 +723,23 @@ function BaganatorMainViewMixin:UpdateCurrencies(character)
   end
 end
 
-function BaganatorMainViewMixin:CombineStacks(callback)
-  local bagsToSort = {}
-  for index, bagID in ipairs(Baganator.Constants.AllBagIndexes) do
-    bagsToSort[index] = true
-  end
-
-  Baganator.Sorting.CombineStacks(BAGANATOR_DATA.Characters[self.liveCharacter].bags, Baganator.Constants.AllBagIndexes, bagsToSort, function(check)
+function BaganatorMainViewMixin:CombineStacks(callback, isBank)
+  local function result(check)
     if not check then
       Baganator.CallbackRegistry:UnregisterCallback("BagCacheUpdate", self.sortManager)
       callback()
     else
       Baganator.CallbackRegistry:RegisterCallback("BagCacheUpdate",  function(_, character, updatedBags)
-        self:CombineStacks(callback)
+        self:CombineStacks(callback, isBank)
       end, self.sortManager)
     end
-  end)
+  end
+  local characterData = BAGANATOR_DATA.Characters[self.liveCharacter]
+  if isBank and self.blizzardBankOpen then
+    Baganator.Sorting.CombineBagAndBankStacks(characterData.bags, Baganator.Constants.AllBagIndexes, characterData.bank, Baganator.Constants.AllBankIndexes, result)
+  else
+    Baganator.Sorting.CombineStacks(characterData.bags, Baganator.Constants.AllBagIndexes, result)
+  end
 end
 
 function BaganatorMainViewMixin:DoSort(isReverse)
@@ -785,6 +786,8 @@ function BaganatorMainViewMixin:CombineStacksAndSort(isReverse)
     Baganator.Sorting.ExternalSortBags(isReverse)
   elseif sortMethod == "combine_stacks_only" then
     self:CombineStacks(function() end)
+  elseif sortMethod == "combine_stacks_bags_bank" then
+    self:CombineStacks(function() end, true)
   else
     self:CombineStacks(function()
       self:DoSort(isReverse)

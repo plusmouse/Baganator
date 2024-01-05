@@ -260,21 +260,23 @@ function BaganatorBankOnlyViewMixin:NotifyBagUpdate(updatedBags)
   self.ReagentBankLive:MarkBagsPending("bank", updatedBags)
 end
 
-function BaganatorBankOnlyViewMixin:CombineStacks(callback)
-  local bagsToSort = {}
-  for index, bagID in ipairs(Baganator.Constants.AllBankIndexes) do
-    bagsToSort[index] = true
-  end
-  Baganator.Sorting.CombineStacks(BAGANATOR_DATA.Characters[self.liveCharacter].bank, Baganator.Constants.AllBankIndexes, bagsToSort, function(check)
+function BaganatorBankOnlyViewMixin:CombineStacks(callback, isBags)
+  local function result(check)
     if not check then
       Baganator.CallbackRegistry:UnregisterCallback("BagCacheUpdate", self.sortManager)
       callback()
     else
       Baganator.CallbackRegistry:RegisterCallback("BagCacheUpdate",  function(_, character, updatedBags)
-        self:CombineStacks(callback)
+        self:CombineStacks(callback, isBank)
       end, self.sortManager)
     end
-  end)
+  end
+  local characterData = BAGANATOR_DATA.Characters[self.liveCharacter]
+  if isBags then
+    Baganator.Sorting.CombineBagAndBankStacks(characterData.bags, Baganator.Constants.AllBagIndexes, characterData.bank, Baganator.Constants.AllBankIndexes, result)
+  else
+    Baganator.Sorting.CombineStacks(characterData.bank, Baganator.Constants.AllBankIndexes, result)
+  end
 end
 
 function BaganatorBankOnlyViewMixin:DoSort(isReverse)
@@ -321,6 +323,8 @@ function BaganatorBankOnlyViewMixin:CombineStacksAndSort(isReverse)
     Baganator.Sorting.ExternalSortBagsBank(isReverse)
   elseif sortMethod == "combine_stacks_only" then
     self:CombineStacks(function() end)
+  elseif sortMethod == "combine_stacks_bags_bank" then
+    self:CombineStacks(function() end, true)
   else
     self:CombineStacks(function()
       self:DoSort(isReverse)

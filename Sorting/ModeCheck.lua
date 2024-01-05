@@ -4,6 +4,7 @@ local always = {
   "type",
   "type-legacy",
   "combine_stacks_only",
+  "combine_stacks_bags_bank",
 }
 function Baganator.Sorting.IsModeAvailable(mode)
   return tIndexOf(always, mode) ~= nil or

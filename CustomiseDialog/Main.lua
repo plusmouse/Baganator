@@ -645,6 +645,7 @@ function BaganatorCustomiseDialogMixin:SetupSorting()
     {"type-legacy", BAGANATOR_L_ITEM_TYPE_BASIC},
     {"quality-legacy", BAGANATOR_L_ITEM_QUALITY_BASIC},
     {"combine_stacks_only", BAGANATOR_L_COMBINE_STACKS_ONLY},
+    {"combine_stacks_bags_bank", BAGANATOR_L_COMBINE_STACKS_IN_BAGS_AND_BANK},
     {"blizzard", BAGANATOR_L_BLIZZARD},
     {"expansion", BAGANATOR_L_EXPANSION},
     {"sortbags", BAGANATOR_L_SORTBAGS},
