@@ -510,7 +510,7 @@ function BaganatorMainViewMixin:UpdateForCharacter(character, isLive, updatedBag
     titleText:SetPoint("LEFT", Baganator.Constants.ButtonFrameOffset + 15 + titleOffset, 0)
     titleText:SetPoint("RIGHT", self.ToggleBankButton, "LEFT", -15, 0)
   else
-    self:SetTitle(BAGANATOR_L_XS_BANK_AND_BAGS:format(Baganator.Constants.KioskCharacters[1]))
+    self:SetTitle(BAGANATOR_L_XS_BAGS:format(Baganator.Constants.KioskCharacters[1]))
 
     -- Centred
     titleText:SetPoint("LEFT", titleOffset, 0)

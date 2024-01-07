@@ -94,7 +94,6 @@ Baganator.Constants.SortStatus = {
   WaitingItemData = 2,
 }
 
-<<<<<<< HEAD
 Baganator.Constants.SampleSearchTerms = {
   "<400",
   BAGANATOR_L_KEYWORD_BOE,
