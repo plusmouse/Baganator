@@ -737,6 +737,39 @@ function BaganatorMainViewMixin:CombineStacks(callback)
   end)
 end
 
+function BaganatorMainViewMixin:MergeCombineStacks(callback)
+  local bags, bagIDs = Baganator.Sorting.GetMergedBankBags(self.liveCharacter)
+  Baganator.Sorting.CombineStacks(bags, bagIDs, function(check)
+    if not check then
+      Baganator.CallbackRegistry:UnregisterCallback("BagCacheUpdate", self.sortManager)
+      callback()
+    else
+      Baganator.CallbackRegistry:RegisterCallback("BagCacheUpdate",  function(_, character, updatedBags)
+        self:MergeCombineStacks(callback)
+      end, self.sortManager)
+    end
+  end)
+end
+
+function BaganatorMainViewMixin:GetWanted()
+  local check = Baganator.Sorting.ApplyStackLimit(1)
+  if check then
+    print("testing")
+    Baganator.CallbackRegistry:RegisterCallback("BagCacheUpdate",  function(_, character, updatedBags)
+      self:GetWanted(callback)
+    end, self.sortManager)
+  else
+    print("nothing")
+    Baganator.CallbackRegistry:UnregisterCallback("BagCacheUpdate", self.sortManager)
+  end
+end
+
+function BaganatorMainViewMixin:Merge()
+  self:MergeCombineStacks(function()
+    self:GetWanted()
+  end)
+end
+
 function BaganatorMainViewMixin:DoSort(isReverse)
   local bagsToSort = {}
   for index, bagID in ipairs(Baganator.Constants.AllBagIndexes) do

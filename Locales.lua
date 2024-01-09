@@ -156,6 +156,8 @@ L["GUILD_BANK"] = "Guild Bank"
 L["SOCKET_INTERFACE"] = "Socket Interface"
 L["SCRAPPING_MACHINE"] = "Scrapping Machine"
 
+L["MERGE"] = "Merge"
+
 local L = Locales.frFR
 --@localization(locale="frFR", format="lua_additive_table")@
 

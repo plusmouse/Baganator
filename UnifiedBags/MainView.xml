@@ -29,6 +29,16 @@
           </OnClick>
         </Scripts>
       </Button>
+      <Button parentKey="MergeButton" inherits="BaganatorGetWantedButtonTemplate" frameLevel="700" registerForClicks="LeftButtonUp,RightButtonUp">
+        <Anchors>
+          <Anchor point="RIGHT" relativeKey="$parent.SortButton" relativePoint="LEFT"/>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            self:GetParent():Merge()
+          </OnClick>
+        </Scripts>
+      </Button>
       <Button parentKey="ToggleBankButton" inherits="BaganatorTooltipIconButtonTemplate" frameLevel="700">
         <KeyValues>
           <KeyValue key="tooltipText" value="BAGANATOR_L_BANK" type="global"/>

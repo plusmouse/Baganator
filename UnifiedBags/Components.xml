@@ -99,6 +99,33 @@
     </Layers>
   </Button>
 
+  <Button name="BaganatorGetWantedButtonTemplate" virtual="true" inherits="BaganatorTooltipIconButtonTemplate">
+    <KeyValues>
+      <KeyValue key="tooltipText" value="BAGANATOR_L_MERGE" type="global"/>
+    </KeyValues>
+    <Scripts>
+      <OnLoad>
+        -- Disable sort button during combat as sorting is partially blocked by Blizzard
+        self:RegisterEvent("PLAYER_REGEN_ENABLED")
+        self:RegisterEvent("PLAYER_REGEN_DISABLED")
+        self:SetEnabled(not InCombatLockdown())
+      </OnLoad>
+      <OnEvent>
+        self:SetEnabled(event ~= "PLAYER_REGEN_DISABLED")
+      </OnEvent>
+    </Scripts>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture parentKey="icon" atlas="orderhalltalents-choice-arrow-large">
+          <Size x="17" y="13"/>
+          <Anchors>
+            <Anchor point="CENTER"/>
+          </Anchors>
+        </Texture>
+      </Layer>
+    </Layers>
+  </Button>
+
   <Button name="BaganatorToggleReagentsButtonTemplate" virtual="true" inherits="BaganatorTooltipIconButtonTemplate">
     <KeyValues>
       <KeyValue key="tooltipText" value="BAGANATOR_L_REAGENTS" type="global"/>
