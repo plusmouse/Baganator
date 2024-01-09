@@ -78,21 +78,30 @@ function Baganator.Sorting.ApplyStackLimit(stackLimit)
     return nil, nil, someMoveAvailable
   end
 
-  local anyMovesFound = false
+  local locked, moved = false, false
+  local goAgain = 0
   for _, item in ipairs(toMove) do
     local sourceLocation = ItemLocation:CreateFromBagAndSlot(item.bagID, item.slotID)
     if not C_Item.IsLocked(sourceLocation) then
       local moveSourceLocation, moveTargetLocation, someMoveAvailable = GetUnwanted(sourceLocation, item.bagID, item.itemID)
-      anyMovesFound = anyMovesFound or someMoveAvailable
       if moveSourceLocation ~= nil and moveTargetLocation ~= nil then
         C_Container.PickupContainerItem(moveSourceLocation:GetBagAndSlot())
         C_Container.PickupContainerItem(moveTargetLocation:GetBagAndSlot())
+        moved = true
         ClearCursor()
+      elseif someMoveAvailable then
+        locked = true
       end
     else
-      anyMovesFound = true
+      locked = true
     end
   end
 
-  return anyMovesFound
+  if moved then
+    return Baganator.Constants.SortStatus.WaitingMove
+  elseif locked then
+    return Baganator.Constants.SortStatus.WaitingUnlock
+  else
+    return Baganator.Constants.SortStatus.Complete
+  end
 end

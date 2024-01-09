@@ -291,12 +291,12 @@ function BaganatorBankOnlyViewMixin:DoSort(isReverse)
     self.sortManager:SetScript("OnUpdate", nil)
     if goAgain == Baganator.Constants.SortStatus.Complete then
       Baganator.CallbackRegistry:UnregisterCallback("BagCacheUpdate", self.sortManager)
-    elseif goAgain == Baganator.Constants.SortStatus.WaitingItemData then
-      self.sortManager:SetScript("OnUpdate", DoSortInternal)
-    else--if goAgain == Baganator.Constants.SortStatus.WaitingMove
+    elseif goAgain == Baganator.Constants.SortStatus.WaitingMove then
       Baganator.CallbackRegistry:RegisterCallback("BagCacheUpdate",  function(_, character, updatedBags)
         DoSortInternal()
       end, self.sortManager)
+    else--if goAgain == Baganator.Constants.SortStatus.WaitingItemData/WaitingUnlock
+      self.sortManager:SetScript("OnUpdate", DoSortInternal)
     end
   end
 

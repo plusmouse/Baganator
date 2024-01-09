@@ -5,7 +5,7 @@ local function DoMovement(stacks)
     return false
   end
 
-  local anySwaps = false
+  local moved, locked = false, false
   for itemID, stacksForItem in pairs(stacks) do
     local stackSize = itemIDToStackSize[itemID]
     if stackSize > 1 then
@@ -36,13 +36,20 @@ local function DoMovement(stacks)
           C_Container.PickupContainerItem(source.bagID, source.slotID)
           C_Container.PickupContainerItem(target.bagID, target.slotID)
           ClearCursor()
+          moved = true
+        else
+          locked = true
         end
-
-        anySwaps = true
       end
     end
   end
-  return anySwaps
+  if moved then
+    return Baganator.Constants.SortStatus.WaitingMove
+  elseif locked then
+    return Baganator.Constants.SortStatus.WaitingUnlock
+  else
+    return Baganator.Constants.SortStatus.Complete
+  end
 end
 
 local function GetBagStacks(bags, bagIDs, indexesToUse, callback)
@@ -85,7 +92,7 @@ function Baganator.Sorting.CombineStacks(bags, bagIDs, callback)
   end
 
   GetBagStacks(bags, bagIDs, indexesToUse, function(stacks)
-    local anySwaps = DoMovement(stacks)
-    callback(anySwaps)
+    local status = DoMovement(stacks)
+    callback(status)
   end)
 end
