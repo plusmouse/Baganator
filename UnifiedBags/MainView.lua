@@ -751,7 +751,7 @@ function BaganatorMainViewMixin:MergeCombineStacks(callback)
   end)
 end
 
-function BaganatorMainViewMixin:GetWanted()
+function BaganatorMainViewMixin:GetWanted(callback)
   local check = Baganator.Sorting.ApplyStackLimit(1)
   if check then
     print("testing")
@@ -761,12 +761,17 @@ function BaganatorMainViewMixin:GetWanted()
   else
     print("nothing")
     Baganator.CallbackRegistry:UnregisterCallback("BagCacheUpdate", self.sortManager)
+    callback()
   end
 end
 
 function BaganatorMainViewMixin:Merge()
+  print("start stacks wide")
   self:MergeCombineStacks(function()
-    self:GetWanted()
+    print("get wanted start")
+    self:GetWanted(function()
+      print("finish merge")
+    end)
   end)
 end
 
