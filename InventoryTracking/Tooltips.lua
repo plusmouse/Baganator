@@ -120,6 +120,10 @@ function Baganator.Tooltips.AddItemLines(tooltip, summaries, itemLink)
     return
   end
 
+  if Baganator.Config.Get(Baganator.Config.Options.TOOLTIPS_SEPARATOR_ABOVE_INFO) then
+    tooltip:AddLine(" ")
+  end
+
   AddDoubleLine(BAGANATOR_L_INVENTORY, LINK_FONT_COLOR:WrapTextInColorCode(BAGANATOR_L_TOTAL_X:format(WHITE_FONT_COLOR:WrapTextInColorCode(totals))))
 
   local charactersShown = 0
@@ -212,6 +216,10 @@ function Baganator.Tooltips.AddCurrencyLines(tooltip, currencyID)
 
   if quantity == 0 then -- nothing to show
     return
+  end
+
+  if Baganator.Config.Get(Baganator.Config.Options.TOOLTIPS_SEPARATOR_ABOVE_INFO) then
+    tooltip:AddLine(" ")
   end
 
   local realmCount = 0

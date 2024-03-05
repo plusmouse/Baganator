@@ -38,6 +38,7 @@ Baganator.Config.Options = {
   TOOLTIPS_FACTION_ONLY = "tooltips_faction_only",
   TOOLTIPS_CHARACTER_LIMIT = "tooltips_character_limit",
   TOOLTIPS_SORT_BY_NAME = "tooltips_sort_by_name",
+  TOOLTIPS_SEPARATOR_ABOVE_INFO = "tooltips_separator_above_info",
 
   HIDE_BOE_ON_COMMON = "hide_boe_on_common",
   ICON_TEXT_QUALITY_COLORS = "icon_text_quality_colors",
@@ -102,6 +103,7 @@ Baganator.Config.Defaults = {
   [Baganator.Config.Options.TOOLTIPS_SORT_BY_NAME] = false,
   [Baganator.Config.Options.TOOLTIPS_FACTION_ONLY] = false,
   [Baganator.Config.Options.TOOLTIPS_CHARACTER_LIMIT] = 4,
+  [Baganator.Config.Options.TOOLTIPS_SEPARATOR_ABOVE_INFO] = false,
   [Baganator.Config.Options.ICON_TEXT_FONT_SIZE] = 14,
   [Baganator.Config.Options.ICON_TOP_LEFT_CORNER_ARRAY] = {"junk", "item_level"},
   [Baganator.Config.Options.ICON_TOP_RIGHT_CORNER_ARRAY] = {},

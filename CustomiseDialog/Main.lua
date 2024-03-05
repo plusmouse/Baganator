@@ -192,6 +192,11 @@ local TOOLTIP_OPTIONS = {
     valuePattern = BAGANATOR_L_X_CHARACTERS_SHOWN,
     option = "tooltips_character_limit",
   },
+  {
+    type = "checkbox",
+    text = BAGANATOR_L_ADD_SEPARATOR_ABOVE_INVENTORY_INFO,
+    option = "tooltips_separator_above_info",
+  },
 }
 
 local OPEN_CLOSE_OPTIONS = {
