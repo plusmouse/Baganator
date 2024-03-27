@@ -50,6 +50,7 @@ Baganator.Config.Options = {
   ICON_GREY_JUNK = "icon_grey_junk",
   ICON_EQUIPMENT_SET_BORDER = "icon_equipment_set_border",
   ICON_FLASH_SIMILAR_ALT = "icon_flash_similar_alt",
+  ICON_SHOW_NEW_ITEM_FLASH = "icon_show_new_item_flash",
 
   JUNK_PLUGIN = "junk_plugin",
 
@@ -129,6 +130,7 @@ Baganator.Config.Defaults = {
   [Baganator.Config.Options.AUTO_SORT_ON_OPEN] = false,
   [Baganator.Config.Options.JUNK_PLUGIN] = "poor_quality",
   [Baganator.Config.Options.SHOW_CHARACTER_RACE_ICONS] = true,
+  [Baganator.Config.Options.ICON_SHOW_NEW_ITEM_FLASH] = true,
 
   [Baganator.Config.Options.DEBUG] = false,
   [Baganator.Config.Options.DEBUG_TIMERS] = false,

@@ -25,6 +25,7 @@ function Baganator.ItemButtonUtil.UpdateSettings()
   iconSettings = {
     markJunk = Baganator.Config.Get("icon_grey_junk"),
     equipmentSetBorder = Baganator.Config.Get("icon_equipment_set_border"),
+    showNewItemFlash = Baganator.Config.Get("icon_show_new_item_flash"),
   }
 
   local junkPluginID = Baganator.Config.Get("junk_plugin")
@@ -447,7 +448,9 @@ function BaganatorRetailLiveContainerItemButtonMixin:SetItemDetails(cacheData)
   SetItemButtonDesaturated(self, locked);
 
   self:UpdateExtended();
-  self:UpdateNewItem(quality);
+  if iconSettings.showNewItemFlash then
+    self:UpdateNewItem(quality);
+  end
   self:UpdateJunkItem(quality, noValue);
   self:UpdateItemContextMatching();
   self:UpdateCooldown(texture);
@@ -884,7 +887,9 @@ function BaganatorClassicLiveContainerItemButtonMixin:SetItemDetails(cacheData)
   SetItemButtonTexture(self, texture or self.emptySlotFilepath);
   SetItemButtonQuality(self, quality, itemID);
   ApplyQualityBorderClassic(self, quality)
-  ApplyNewItemAnimation(self, quality)
+  if iconSettings.showNewItemFlash then
+    ApplyNewItemAnimation(self, quality)
+  end
   SetItemButtonCount(self, itemCount);
   SetItemButtonDesaturated(self, locked);
 

@@ -117,6 +117,11 @@ local ICON_OPTIONS = {
   },
   {
     type = "checkbox",
+    text = BAGANATOR_L_SHOW_NEW_ITEM_FLASH_ON_ICONS,
+    option = "icon_show_new_item_flash",
+  },
+  {
+    type = "checkbox",
     text = BAGANATOR_L_ITEMS_FLASH_ON_ALT_CLICK,
     option = "icon_flash_similar_alt",
   },
